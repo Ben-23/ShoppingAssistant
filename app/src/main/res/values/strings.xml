@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Shopping Assistant</string>
+    <string name="logo">logo</string>
+    <string name="title_activity_menu">menu</string>
+    <string name="Home">Home</string>
+    <string name="Account">Account</string>
+    <string name="Scan">Scan</string>
+    <string name="logoo">logoo</string>
+    <string name="title_activity_barcode_result">BarcodeResult</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_result_">Result_Activity</string>
+
+</resources>
