@@ -1540,6 +1540,7 @@ drawable quantum_ic_volume_off_white_36
 drawable quantum_ic_volume_up_grey600_36
 drawable quantum_ic_volume_up_white_36
 drawable scan_icon
+drawable search_back
 drawable searchicon
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1801,10 +1802,12 @@ id place_autocomplete_separator
 id plain
 id production
 id progressBar
+id progressBar2
 id progress_circular
 id progress_horizontal
 id radio
 id recycle
+id recyclerView
 id rfc822
 id right
 id right_icon

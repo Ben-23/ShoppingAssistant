@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="techtopus">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#000000</color>
     <color name="popup">#616269</color>
     <color name="close">#111</color>
 </resources>
