@@ -66,54 +66,13 @@ StringBuilder h=new StringBuilder();
             }
             if(str!=null)
             {
-                Fragment fragobj= new ResultFragment();
-                loadfragment(fragobj);
-                getAmazon(bundle.getString("result"));
+                loadfragment(new ResultFragment());
+                //getAmazon(bundle.getString("result"));
+                getFlipkart(bundle.getString("result"));
             }
 
 
         }
-    }
-
-    public void getAmazon(final String s)
-    {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Document doc = null;
-                StringBuilder name = new StringBuilder();
-                StringBuilder link = new StringBuilder();
-                StringBuilder imglink=new StringBuilder();
-                StringBuilder price=new StringBuilder();
-                try {
-                    doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).get();
-                    Element element=doc.select("a.a-link-normal.s-access-detail-page").first();
-                    name.append(element.text());
-                    link.append(element.attr("href"));
-                    element=doc.getElementsByClass("s-access-image").first();
-                    imglink.append(element.attr("src"));
-                    element=doc.getElementsByClass("a-size-base a-color-base s-size-mild").first();
-                    price.append(element.text());
-                    builder.append("\nTitle : "+name+"\nLink: "+link+"\n img: "+imglink+"\nprice: "+price);
-                }catch (IOException e) {
-                    builder.append("Error : ").append(e.getMessage()).append("\n");
-                    //loadfragment(new ErrorFragment());
-                    pb=(ProgressBar)findViewById(R.id.progressBar2);
-                    pb.setVisibility(View.INVISIBLE);
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        pb=(ProgressBar)findViewById(R.id.progressBar2);
-                        pb.setVisibility(View.INVISIBLE);
-                        txtt=findViewById(R.id.textView2);
-                        //Toast.makeText(menu.this, builder.toString(), Toast.LENGTH_SHORT).show();
-                        txtt.setText(builder.toString());
-                    }
-                });
-            }
-        }).start();
     }
 
     private boolean loadfragment(Fragment fragment) {
@@ -150,6 +109,77 @@ StringBuilder h=new StringBuilder();
         startActivity(Intent.createChooser(intent, "Choose an Email client :"));
 
     }
+    /*Fucntions to fetch data from amazon and flipkart*/
+    public void getAmazon(final String s)
+    {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Document doc = null;
+                StringBuilder name = new StringBuilder();
+                StringBuilder link = new StringBuilder();
+                StringBuilder imglink=new StringBuilder();
+                StringBuilder price=new StringBuilder();
+                try {
+                    doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).get();
+                    Element element=doc.select("a.a-link-normal.s-access-detail-page").first();
+                    name.append(element.text());
+                    link.append(element.attr("href"));
+                    element=doc.getElementsByClass("s-access-image").first();
+                    imglink.append(element.attr("src"));
+                    element=doc.getElementsByClass("a-size-base a-color-base s-size-mild").first();
+                    price.append(element.text());
+                    builder.append("\nTitle : "+name+"\nLink: "+link+"\n img: "+imglink+"\nprice: "+price);
+                }catch (IOException e) {
+                    builder.append("Error : ").append(e.getMessage()).append("\n");
+                   // loadfragment(new ErrorFragment());
+                  //  pb=(ProgressBar)findViewById(R.id.progressBar2);
+                   // pb.setVisibility(View.INVISIBLE);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pb=(ProgressBar)findViewById(R.id.progressBar2);
+                        pb.setVisibility(View.INVISIBLE);
+                        txtt=findViewById(R.id.textView2);
+                        txtt.setText(builder.toString());
+                    }
+                });
+            }
+        }).start();
+    }
+    public void getFlipkart(final String  s)
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Document doc =null;
+                StringBuilder name = new StringBuilder();
+                StringBuilder link = new StringBuilder();
+                try{
+                    doc =  Jsoup.connect("https://www.flipkart.com/search?q=" + s).get();
+                    Element element=doc.select("_1Nyybr").first();
+                    name.append(element.attr("src"));
+                    builder.append("Flip Title : "+name);
+                }catch (IOException e)
+                {
+                    builder.append("Error : ").append(e.getMessage()).append("\n");
+                }
+                runOnUiThread(new Runnable(){
+                    @Override
+                            public void run() {
+                        pb=(ProgressBar)findViewById(R.id.progressBar2);
+                        pb.setVisibility(View.INVISIBLE);
+                        txtt=findViewById(R.id.textView2);
+                        txtt.setText(builder.toString());
+                    }
+                });
+
+            }
+        }).start();
+    }
+
     public void fb(View view)
     {
         try {
