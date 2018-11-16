@@ -16,28 +16,40 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import static com.google.android.gms.internal.zzagy.runOnUiThread;
 
 public class menu extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 private ArrayList <String> items=new ArrayList<>();
 
-public EditText t;
-TextView txt;
+public EditText t,t2,t3;
+TextView txtt;
+int g;
+ProgressBar pb;
 StringBuilder h=new StringBuilder();
+    StringBuilder builder=new StringBuilder();
+    StringBuilder prod=new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        //txt=(TextView)findViewById(R.id.itemss);
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         Bundle bundle=getIntent().getExtras();
@@ -48,20 +60,60 @@ StringBuilder h=new StringBuilder();
         {
             String str=bundle.getString("result",null);
             if(str=="null")
-            {Toast.makeText(this, "No barcode found!!", Toast.LENGTH_SHORT).show();
+            {
+                Toast.makeText(this, "No barcode found!!", Toast.LENGTH_SHORT).show();
                 loadfragment(new HomeFragment());
-
             }
             if(str!=null)
             {
                 Fragment fragobj= new ResultFragment();
-                fragobj.setArguments(bundle);
                 loadfragment(fragobj);
-
+                getAmazon(bundle.getString("result"));
             }
 
 
         }
+    }
+
+    public void getAmazon(final String s)
+    {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Document doc = null;
+                StringBuilder name = new StringBuilder();
+                StringBuilder link = new StringBuilder();
+                StringBuilder imglink=new StringBuilder();
+                StringBuilder price=new StringBuilder();
+                try {
+                    doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).get();
+                    Element element=doc.select("a.a-link-normal.s-access-detail-page").first();
+                    name.append(element.text());
+                    link.append(element.attr("href"));
+                    element=doc.getElementsByClass("s-access-image").first();
+                    imglink.append(element.attr("src"));
+                    element=doc.getElementsByClass("a-size-base a-color-base s-size-mild").first();
+                    price.append(element.text());
+                    builder.append("\nTitle : "+name+"\nLink: "+link+"\n img: "+imglink+"\nprice: "+price);
+                }catch (IOException e) {
+                    builder.append("Error : ").append(e.getMessage()).append("\n");
+                    //loadfragment(new ErrorFragment());
+                    pb=(ProgressBar)findViewById(R.id.progressBar2);
+                    pb.setVisibility(View.INVISIBLE);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pb=(ProgressBar)findViewById(R.id.progressBar2);
+                        pb.setVisibility(View.INVISIBLE);
+                        txtt=findViewById(R.id.textView2);
+                        //Toast.makeText(menu.this, builder.toString(), Toast.LENGTH_SHORT).show();
+                        txtt.setText(builder.toString());
+                    }
+                });
+            }
+        }).start();
     }
 
     private boolean loadfragment(Fragment fragment) {
@@ -134,9 +186,38 @@ loadfragment(new WishlistFragment());
         moveTaskToBack(true);
 
     }
+    public void searchproduct(View view)
+    {
+        t2=(EditText)findViewById(R.id.editText2);
+        prod.append(t2.getText());
+        for (int index = 0; index < prod.length(); index++) {
+            if (prod.charAt(index) == ' ') {
+                prod.setCharAt(index, '+');
+            }
+        }
+        Fragment fragobj= new ResultFragment();
+        loadfragment(fragobj);
+        getAmazon(prod.toString());
+    }
+    public void searchproduct_err(View view)
+    {
+        t=(EditText)findViewById(R.id.editText2);
+        prod.append(t2.getText());
+        for (int index = 0; index < prod.length(); index++) {
+            if (prod.charAt(index) == ' ') {
+                prod.setCharAt(index, '+');
+            }
+        }
+        Fragment fragobj= new ResultFragment();
+        loadfragment(fragobj);
+        getAmazon(prod.toString());
+        Toast.makeText(this, prod, Toast.LENGTH_SHORT).show();
+
+    }
 
     public void add(View view)
     {
+
         t=(EditText)findViewById(R.id.editText3);
         h.append(t.getText().toString());
         items.add(h.toString());
@@ -146,9 +227,19 @@ loadfragment(new WishlistFragment());
     }
     private void initRecyclerView()
     {
+//        if(fullList != null && temp != null) {
+//            adapter = new ExpandableListCustom(getActivity(), fullList,temp);
+//            lv.setAdapter(adapter);
+//        }
+
+try{
         RecyclerView recycler=(RecyclerView)findViewById(R.id.recycle);
         Recyclerview_Adapter adapter=new Recyclerview_Adapter(this,items);
         recycler.setAdapter(adapter) ;
         recycler.setLayoutManager(new LinearLayoutManager(this));
+    }catch(Exception e)
+{
+    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+}
     }
 }

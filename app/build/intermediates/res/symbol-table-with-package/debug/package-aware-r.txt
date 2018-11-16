@@ -1300,6 +1300,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable error404
 drawable fb
 drawable gmail_icon
 drawable google
@@ -1663,6 +1664,7 @@ id direct
 id disableHome
 id donate_with
 id donate_with_google
+id editText
 id editText2
 id editText3
 id edit_query
@@ -1705,6 +1707,8 @@ id ifRoom
 id image
 id imageView
 id imageView10
+id imageView12
+id imageView2
 id imageView3
 id imageView4
 id imageView5
@@ -1886,6 +1890,7 @@ id textView11
 id textView12
 id textView13
 id textView14
+id textView15
 id textView2
 id textView3
 id textView4
@@ -2008,6 +2013,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_account
+layout fragment_error
 layout fragment_home
 layout fragment_result
 layout fragment_wishlist

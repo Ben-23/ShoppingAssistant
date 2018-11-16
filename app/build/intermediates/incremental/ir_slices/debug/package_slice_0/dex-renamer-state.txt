@@ -1,4 +1,4 @@
-#Wed Nov 14 21:51:57 IST 2018
-base.0=E\:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Fri Nov 16 11:27:12 IST 2018
+base.0=/home/amma/Documents/ShoppingAssistant/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex
