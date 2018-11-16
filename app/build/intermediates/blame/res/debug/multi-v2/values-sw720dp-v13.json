@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw720dp-v13\\values-sw720dp-v13.xml",
+            "outputFile": "/home/amma/Documents/ShoppingAssistant/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw720dp-v13/values-sw720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-25.2.0.aar\\9cf68204404a202f7125755c53676b45\\res\\values-sw720dp-v13\\values-sw720dp-v13.xml",
+                    "source": "/home/amma/.gradle/caches/transforms-1/files-1.1/mediarouter-v7-25.2.0.aar/370adda40cca4491ed4905c2f3e791a9/res/values-sw720dp-v13/values-sw720dp-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

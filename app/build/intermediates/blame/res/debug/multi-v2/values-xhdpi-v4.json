@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+            "outputFile": "/home/amma/Documents/ShoppingAssistant/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-xhdpi-v4/values-xhdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\core-1.9.aar\\cd7de22a96385e6ea45eb3aef31759f8\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "source": "/home/amma/.gradle/caches/transforms-1/files-1.1/core-1.9.aar/a5fe52ac4ea7107830eeca34483d540b/res/values-xhdpi-v4/values-xhdpi-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

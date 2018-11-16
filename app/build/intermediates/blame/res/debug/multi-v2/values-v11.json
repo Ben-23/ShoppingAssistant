@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+            "outputFile": "/home/amma/Documents/ShoppingAssistant/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-appinvite-11.0.1.aar\\1e946eb2f7cbc02881048e9108a58272\\res\\values-v11\\values.xml",
+                    "source": "/home/amma/.gradle/caches/transforms-1/files-1.1/play-services-appinvite-11.0.1.aar/603c002ced981862303b943114eb6790/res/values-v11/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

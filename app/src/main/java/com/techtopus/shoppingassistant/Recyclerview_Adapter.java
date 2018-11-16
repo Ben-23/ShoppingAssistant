@@ -25,15 +25,17 @@ public class Recyclerview_Adapter extends RecyclerView.Adapter<Recyclerview_Adap
         this.context = context;
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item,viewGroup,false);
-        ViewHolder holder =new ViewHolder(view);
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder (@NonNull ViewGroup viewGroup,int i){
+
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
+        ViewHolder holder = new ViewHolder(view);
 
 
         return holder;
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
@@ -44,7 +46,9 @@ public class Recyclerview_Adapter extends RecyclerView.Adapter<Recyclerview_Adap
         public void onClick(View view) {
             Toast.makeText(context, items.get(i)+" is cleared", Toast.LENGTH_SHORT).show();
             viewHolder.txt.setText("");
+
             items.remove(items.get(i));
+
 
 
         }
