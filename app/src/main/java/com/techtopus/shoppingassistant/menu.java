@@ -35,14 +35,13 @@ import static com.google.android.gms.internal.zzagy.runOnUiThread;
 
 public class menu extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 private ArrayList <String> items=new ArrayList<>();
-
 public EditText t,t2,t3;
 TextView txtt;
 int g;
 ProgressBar pb;
 StringBuilder h=new StringBuilder();
-    StringBuilder builder=new StringBuilder();
-    StringBuilder prod=new StringBuilder();
+StringBuilder builder=new StringBuilder();
+StringBuilder prod=new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,7 +258,7 @@ loadfragment(new WishlistFragment());
     {
 
         t=(EditText)findViewById(R.id.editText3);
-        h.append(t.getText().toString());
+        h.append(t.getText());
         items.add(h.toString());
         t.setText("");
         initRecyclerView();

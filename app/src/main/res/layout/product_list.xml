@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:layout_margin="3dp"
+    android:id="@+id/pro_layout"
+    android:background="@drawable/search_back"
+    android:elevation="8dp"
+
+    >
+
+    <ImageView
+        android:layout_width="82dp"
+        android:layout_height="91dp" />
+
+    <TextView
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="18dp"
+        android:fontFamily="cursive"
+        android:text="Product Name"
+        android:textColor="#000"
+        android:textSize="27dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="cursive"
+        android:text="₹."
+        android:textColor="#000"
+        android:textSize="24sp"
+         />
+
+</RelativeLayout>

@@ -2,11 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="15dp"
+    android:elevation="8dp"
     android:id="@+id/parent_layout"
-    android:background="#fff">
+    android:layout_margin="3dp"
+    android:background="@drawable/search_back"
+    >
 
 
     <TextView
@@ -16,10 +19,11 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="18dp"
-        android:fontFamily="casual"
-        android:text="TextView"
+        android:fontFamily="cursive"
+        android:textAllCaps="false"
         android:textColor="#000"
-        android:textSize="25dp" />
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/closebtn"

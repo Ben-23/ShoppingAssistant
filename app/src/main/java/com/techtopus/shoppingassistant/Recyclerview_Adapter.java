@@ -52,7 +52,7 @@ public class Recyclerview_Adapter extends RecyclerView.Adapter<Recyclerview_Adap
 
 
         }
-    });}catch (Exception e)
+    });}catch (NullPointerException e)
     {
         Toast.makeText(context, "Your wishlist is empty ", Toast.LENGTH_SHORT).show();
     }
