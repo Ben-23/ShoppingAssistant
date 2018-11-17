@@ -67,7 +67,7 @@ StringBuilder h=new StringBuilder();
             if(str!=null)
             {
                 loadfragment(new ResultFragment());
-                //getAmazon(bundle.getString("result"));
+                getAmazon(bundle.getString("result"));
                 getFlipkart(bundle.getString("result"));
             }
 
@@ -128,7 +128,7 @@ StringBuilder h=new StringBuilder();
                     link.append(element.attr("href"));
                     element=doc.getElementsByClass("s-access-image").first();
                     imglink.append(element.attr("src"));
-                    element=doc.getElementsByClass("a-size-base a-color-base s-size-mild").first();
+                    element=doc.select("span.a-size-base.a-color-price.s-price.a-text-bold").first();
                     price.append(element.text());
                     builder.append("\nTitle : "+name+"\nLink: "+link+"\n img: "+imglink+"\nprice: "+price);
                 }catch (IOException e) {
@@ -156,12 +156,19 @@ StringBuilder h=new StringBuilder();
             public void run() {
                 Document doc =null;
                 StringBuilder name = new StringBuilder();
-                StringBuilder link = new StringBuilder();
+                StringBuilder link = new StringBuilder("flipkart.com");
+                StringBuilder imglink=new StringBuilder("");
+                StringBuilder price=new StringBuilder();
                 try{
                     doc =  Jsoup.connect("https://www.flipkart.com/search?q=" + s).get();
-                    Element element=doc.select("_1Nyybr").first();
-                    name.append(element.attr("src"));
-                    builder.append("Flip Title : "+name);
+                    Element element=doc.getElementsByClass("_2cLu-l").first();
+                    name.append(element.attr("title"));
+                    link.append(element.attr("href"));
+                    //element=doc.getElementsByClass("img._1Nyybr._30XEf0").first();
+                    //imglink.append(element.attr("alt"));
+                    element=doc.getElementsByClass("_1vC4OE").first();
+                    price.append(element.text());
+                    builder.append("\nFlip Title : "+name+"\nLink : "+link+"\nImg : "+imglink+"\nPrice: "+price);
                 }catch (IOException e)
                 {
                     builder.append("Error : ").append(e.getMessage()).append("\n");
@@ -221,13 +228,16 @@ loadfragment(new WishlistFragment());
         t2=(EditText)findViewById(R.id.editText2);
         prod.append(t2.getText());
         for (int index = 0; index < prod.length(); index++) {
-            if (prod.charAt(index) == ' ') {
-                prod.setCharAt(index, '+');
+            if (prod.charAt(index) == ' ')
+            {
+                prod.deleteCharAt(index);
             }
         }
         Fragment fragobj= new ResultFragment();
         loadfragment(fragobj);
+        Toast.makeText(this,prod.toString(), Toast.LENGTH_SHORT).show();
         getAmazon(prod.toString());
+        getFlipkart(prod.toString());
     }
     public void searchproduct_err(View view)
     {
@@ -235,7 +245,7 @@ loadfragment(new WishlistFragment());
         prod.append(t2.getText());
         for (int index = 0; index < prod.length(); index++) {
             if (prod.charAt(index) == ' ') {
-                prod.setCharAt(index, '+');
+                prod.deleteCharAt(index);
             }
         }
         Fragment fragobj= new ResultFragment();
