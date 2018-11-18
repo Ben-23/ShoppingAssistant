@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Nov 17 15:57:05 IST 2018
+#Sun Nov 18 14:29:48 IST 2018
 1.base=E\:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
 2.path=classes2.dex
 0.baseType=DIRECTORY

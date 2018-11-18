@@ -64,7 +64,7 @@ public class Recyclerview_Adapter extends RecyclerView.Adapter<Recyclerview_Adap
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt;
         ImageView  close;
         RelativeLayout parent;

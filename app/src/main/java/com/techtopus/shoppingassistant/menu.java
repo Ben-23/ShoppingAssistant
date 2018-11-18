@@ -20,8 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,10 +29,18 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import static com.google.android.gms.internal.zzagy.runOnUiThread;
 
 public class menu extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 private ArrayList <String> items=new ArrayList<>();
+
+    private ArrayList <String> prodname=new ArrayList<>();
+    private ArrayList <String> prodimg=new ArrayList<>();
+    private ArrayList <String> prodlink=new ArrayList<>();
+    private ArrayList <String> prodprice=new ArrayList<>();
+
+
+
+
 public EditText t,t2,t3;
 TextView txtt;
 int g;
@@ -116,20 +122,16 @@ StringBuilder prod=new StringBuilder();
             @Override
             public void run() {
                 Document doc = null;
-                StringBuilder name = new StringBuilder();
-                StringBuilder link = new StringBuilder();
-                StringBuilder imglink=new StringBuilder();
-                StringBuilder price=new StringBuilder();
+
                 try {
                     doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).get();
                     Element element=doc.select("a.a-link-normal.s-access-detail-page").first();
-                    name.append(element.text());
-                    link.append(element.attr("href"));
+                    prodname.add(element.text());
+                    prodlink.add(element.attr("href"));
                     element=doc.getElementsByClass("s-access-image").first();
-                    imglink.append(element.attr("src"));
+                    prodimg.add(element.attr("src"));
                     element=doc.select("span.a-size-base.a-color-price.s-price.a-text-bold").first();
-                    price.append(element.text());
-                    builder.append("\nTitle : "+name+"\nLink: "+link+"\n img: "+imglink+"\nprice: "+price);
+                    prodprice.add(element.text());
                 }catch (IOException e) {
                     builder.append("Error : ").append(e.getMessage()).append("\n");
                    // loadfragment(new ErrorFragment());
@@ -139,14 +141,30 @@ StringBuilder prod=new StringBuilder();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        initRecyclerView2();
                         pb=(ProgressBar)findViewById(R.id.progressBar2);
                         pb.setVisibility(View.INVISIBLE);
-                        txtt=findViewById(R.id.textView2);
-                        txtt.setText(builder.toString());
+
+                     //   txtt=findViewById(R.id.textView2);
+                       // txtt.setText(builder.toString());
                     }
                 });
             }
         }).start();
+    }
+    private void initRecyclerView2()
+    {
+
+
+        try{
+            RecyclerView recycler2=(RecyclerView)findViewById(R.id.recyclerView2);
+            Recyclerview_Adapter2 adapter2=new Recyclerview_Adapter2(this,prodimg,prodname,prodprice,prodlink);
+            recycler2.setAdapter(adapter2) ;
+            recycler2.setLayoutManager(new LinearLayoutManager(this));
+        }catch(Exception e)
+        {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
     public void getFlipkart(final String  s)
     {
@@ -154,20 +172,17 @@ StringBuilder prod=new StringBuilder();
             @Override
             public void run() {
                 Document doc =null;
-                StringBuilder name = new StringBuilder();
-                StringBuilder link = new StringBuilder("flipkart.com");
-                StringBuilder imglink=new StringBuilder("");
-                StringBuilder price=new StringBuilder();
                 try{
                     doc =  Jsoup.connect("https://www.flipkart.com/search?q=" + s).get();
                     Element element=doc.getElementsByClass("_2cLu-l").first();
-                    name.append(element.attr("title"));
-                    link.append(element.attr("href"));
+                    prodname.add(element.attr("title"));
+                    prodlink.add(element.attr("href"));
                     //element=doc.getElementsByClass("img._1Nyybr._30XEf0").first();
                     //imglink.append(element.attr("alt"));
+                    prodimg.add("file:///C:/Users/i5/Downloads/download.png");
                     element=doc.getElementsByClass("_1vC4OE").first();
-                    price.append(element.text());
-                    builder.append("\nFlip Title : "+name+"\nLink : "+link+"\nImg : "+imglink+"\nPrice: "+price);
+                    prodprice.add(element.text());
+                    //builder.append("\nFlip Title : "+name+"\nLink : "+link+"\nImg : "+imglink+"\nPrice: "+price);
                 }catch (IOException e)
                 {
                     builder.append("Error : ").append(e.getMessage()).append("\n");
@@ -175,10 +190,10 @@ StringBuilder prod=new StringBuilder();
                 runOnUiThread(new Runnable(){
                     @Override
                             public void run() {
+                        //initRecyclerView2();
                         pb=(ProgressBar)findViewById(R.id.progressBar2);
                         pb.setVisibility(View.INVISIBLE);
-                        txtt=findViewById(R.id.textView2);
-                        txtt.setText(builder.toString());
+
                     }
                 });
 
@@ -224,6 +239,8 @@ loadfragment(new WishlistFragment());
     }
     public void searchproduct(View view)
     {
+
+        prod.delete(0, prod.length());
         t2=(EditText)findViewById(R.id.editText2);
         prod.append(t2.getText());
         for (int index = 0; index < prod.length(); index++) {

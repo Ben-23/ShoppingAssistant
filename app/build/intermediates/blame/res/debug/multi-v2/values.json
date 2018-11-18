@@ -95,6 +95,25 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\coordinatorlayout-28.0.0-beta01.aar\\cbeb8c98a4f5a050dee0ef80efc6b4d2\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,13,102",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,116,724,5935",
+                        "endLines": "2,12,101,104",
+                        "endColumns": "60,24,24,12",
+                        "endOffsets": "111,719,5930,6075"
+                    },
+                    "to": {
+                        "startLines": "35,1228,1238,5357",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "1799,72630,73238,328134",
+                        "endLines": "35,1237,1326,5359",
+                        "endColumns": "60,24,24,12",
+                        "endOffsets": "1855,73233,78444,328274"
+                    }
+                },
+                {
                     "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-11.0.1.aar\\cf87596b13a6c6375afbf52d5013b252\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,12,13,14,15,16,17,18,19,20,21,24,25",
@@ -148,7 +167,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\2f9e23f5bd0d4a13ae71ae3c7e52ac00\\res\\values\\values.xml",
+                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0-beta01.aar\\0f3d37798ef373087d538b3e74b8962b\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,6,13,56,88,125,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,171,172,176,177,178",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -201,25 +220,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\coordinatorlayout-28.0.0.aar\\04bc3e4f8a9e7025afcead89cece2b81\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,13,102",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,116,724,5935",
-                        "endLines": "2,12,101,104",
-                        "endColumns": "60,24,24,12",
-                        "endOffsets": "111,719,5930,6075"
-                    },
-                    "to": {
-                        "startLines": "35,1228,1238,5357",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "1799,72630,73238,328134",
-                        "endLines": "35,1237,1326,5359",
-                        "endColumns": "60,24,24,12",
-                        "endOffsets": "1855,73233,78444,328274"
-                    }
-                },
-                {
                     "source": "E:\\WorkSpace\\ShoppingAssistant\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "5,4,6,1,2,7,8,3,12,10,9,11",
@@ -234,25 +234,6 @@
                         "startOffsets": "154941,154985,155023,157819,163851,163889,166942,167014,167067,167134,167188,167232",
                         "endColumns": "43,37,37,55,37,39,71,52,66,53,43,61",
                         "endOffsets": "154980,155018,155056,157870,163884,163924,167009,167062,167129,167183,167227,167289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\recyclerview-v7-28.0.0.aar\\857063a30d0824ed534f79722c9ed435\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,30,31,32,33,34,35,36",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,1535,1594,1642,1698,1773,1849,1921",
-                        "endLines": "29,30,31,32,33,34,35,36",
-                        "endColumns": "24,58,47,55,74,75,71,65",
-                        "endOffsets": "1530,1589,1637,1693,1768,1844,1916,1982"
-                    },
-                    "to": {
-                        "startLines": "1907,2583,2584,2585,2593,2594,2595,2703",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "107633,144473,144532,144580,145247,145322,145398,152034",
-                        "endLines": "1934,2583,2584,2585,2593,2594,2595,2703",
-                        "endColumns": "24,58,47,55,74,75,71,65",
-                        "endOffsets": "109108,144527,144575,144631,145317,145393,145465,152095"
                     }
                 },
                 {
@@ -380,6 +361,25 @@
                         "startOffsets": "138346,138404",
                         "endColumns": "57,55",
                         "endOffsets": "138399,138455"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\recyclerview-v7-28.0.0-beta01.aar\\375f83a0a8d8abd5179b6560cd71f89f\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,1535,1594,1642,1698,1773,1849,1921",
+                        "endLines": "29,30,31,32,33,34,35,36",
+                        "endColumns": "24,58,47,55,74,75,71,65",
+                        "endOffsets": "1530,1589,1637,1693,1768,1844,1916,1982"
+                    },
+                    "to": {
+                        "startLines": "1907,2583,2584,2585,2593,2594,2595,2703",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "107633,144473,144532,144580,145247,145322,145398,152034",
+                        "endLines": "1934,2583,2584,2585,2593,2594,2595,2703",
+                        "endColumns": "24,58,47,55,74,75,71,65",
+                        "endOffsets": "109108,144527,144575,144631,145317,145393,145465,152095"
                     }
                 },
                 {

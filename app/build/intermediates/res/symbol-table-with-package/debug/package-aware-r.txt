@@ -1804,6 +1804,10 @@ id place_autocomplete_search_button
 id place_autocomplete_search_input
 id place_autocomplete_separator
 id plain
+id pro_layout
+id prod_name
+id prod_price
+id prodimg
 id production
 id progressBar
 id progressBar2
@@ -1811,7 +1815,7 @@ id progress_circular
 id progress_horizontal
 id radio
 id recycle
-id recyclerView
+id recyclerView2
 id rfc822
 id right
 id right_icon
@@ -1827,7 +1831,6 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
-id scrollView2
 id scrollable
 id search_badge
 id search_bar
@@ -2036,6 +2039,7 @@ layout place_autocomplete_item_prediction
 layout place_autocomplete_progress
 layout popup_contact
 layout popupcamera
+layout product_list
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
