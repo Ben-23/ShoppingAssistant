@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.techtopus.shoppingassistant.Recyclerview_Adapter.ViewHolder;
 
 import java.util.ArrayList;
@@ -24,14 +25,17 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
     private ArrayList<String> prodname = new ArrayList<String>();
     private ArrayList<String> prodprice = new ArrayList<String>();
     private ArrayList<String> prodlink = new ArrayList<String>();
+    private ArrayList<Integer> prodsite = new ArrayList<>();
+
 
     private Context context;
 
-    public Recyclerview_Adapter2(Context context, ArrayList<String> prodimg, ArrayList<String> prodname, ArrayList<String> prodprice,ArrayList<String> prodlink) {
+    public Recyclerview_Adapter2(Context context, ArrayList<String> prodimg, ArrayList<String> prodname, ArrayList<String> prodprice,ArrayList<String> prodlink,ArrayList<Integer> prodsite) {
         this.prodimg = prodimg;
         this.prodname = prodname;
         this.prodprice = prodprice;
         this.prodlink = prodlink;
+        this.prodsite=prodsite;
         this.context = context;
     }
 
@@ -48,13 +52,17 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
     public void onBindViewHolder(@NonNull final viewholder viewHolder2, final int i) {
      viewHolder2.t1.setText(prodname.get(i));
         viewHolder2.t2.setText(prodprice.get(i));
-
-        viewHolder2.rl.setOnClickListener(new View.OnClickListener() {
+        if(prodsite.get(i)==0)
+            viewHolder2.site.setImageResource(R.drawable.amazon);
+        else
+            viewHolder2.site.setImageResource(R.drawable.flipkart);
+            Glide.with(context).asBitmap().load(prodlink.get(i)).into(viewHolder2.prodimg);
+            viewHolder2.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(prodlink.get(i)));
                 context.startActivity(browserIntent);
-            }
+                 }
         });
 
 
@@ -66,7 +74,7 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
     }
 
     public class viewholder extends ViewHolder {
-        ImageView prodimg;
+        ImageView prodimg,site;
         TextView t1, t2;
         RelativeLayout rl;
 
@@ -76,6 +84,7 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
             t1 = (TextView) itemView.findViewById(R.id.prod_name);
             t2 = (TextView) itemView.findViewById(R.id.prod_price);
             rl = (RelativeLayout) itemView.findViewById(R.id.pro_layout);
+            site=(ImageView)itemView.findViewById(R.id.site);
 
 
         }

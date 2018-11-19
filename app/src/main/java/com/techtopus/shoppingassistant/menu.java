@@ -37,17 +37,15 @@ private ArrayList <String> items=new ArrayList<>();
     private ArrayList <String> prodimg=new ArrayList<>();
     private ArrayList <String> prodlink=new ArrayList<>();
     private ArrayList <String> prodprice=new ArrayList<>();
-
-
-
-
-public EditText t,t2,t3;
-TextView txtt;
-int g;
-ProgressBar pb;
-StringBuilder h=new StringBuilder();
-StringBuilder builder=new StringBuilder();
-StringBuilder prod=new StringBuilder();
+    private ArrayList <Integer> prodsite=new ArrayList<>();
+    int flag=0;
+    public EditText t,t2,t3;
+    int g;
+    TextView txtt;
+    ProgressBar pb;
+    StringBuilder h=new StringBuilder();
+    StringBuilder builder=new StringBuilder();
+    StringBuilder prod=new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +104,39 @@ StringBuilder prod=new StringBuilder();
         }
         return loadfragment(fragment);
     }
+
+    /* Fuctions for fb,gmail,wishlist*/
+    public void fb(View view)
+    {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/techtopus"));
+            startActivity(intent);
+        } catch(Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/techtopus")));
+        }
+    }
+    public void wish(View view)
+    {
+        loadfragment(new WishlistFragment());
+    }
+    public void contact(View view)
+    {
+        final Dialog mydialogue = new Dialog(this);
+
+        //startActivity(intent);
+        mydialogue.setContentView(R.layout.popup_contact);
+        TextView t=(TextView)mydialogue.findViewById(R.id.closer);
+        t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mydialogue.dismiss();
+
+
+            }
+        });
+        mydialogue.show();
+    }
+
     public void gmail(View view)
     {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
@@ -130,41 +161,28 @@ StringBuilder prod=new StringBuilder();
                     prodlink.add(element.attr("href"));
                     element=doc.getElementsByClass("s-access-image").first();
                     prodimg.add(element.attr("src"));
+                    prodimg.add(element.attr("src"));
+                    prodsite.add(0);
                     element=doc.select("span.a-size-base.a-color-price.s-price.a-text-bold").first();
                     prodprice.add(element.text());
-                }catch (IOException e) {
-                    builder.append("Error : ").append(e.getMessage()).append("\n");
-                   // loadfragment(new ErrorFragment());
-                  //  pb=(ProgressBar)findViewById(R.id.progressBar2);
-                   // pb.setVisibility(View.INVISIBLE);
+                }catch (Exception e) {
+                    flag=1;
+                    loadfragment(new ErrorFragment());
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        initRecyclerView2();
-                        pb=(ProgressBar)findViewById(R.id.progressBar2);
-                        pb.setVisibility(View.INVISIBLE);
+                        if(flag==0) {
+                            
+                            initRecyclerView2();
+                            pb = (ProgressBar) findViewById(R.id.progressBar2);
+                            pb.setVisibility(View.INVISIBLE);
+                        }
 
-                     //   txtt=findViewById(R.id.textView2);
-                       // txtt.setText(builder.toString());
-                    }
+                     }
                 });
             }
         }).start();
-    }
-    private void initRecyclerView2()
-    {
-
-
-        try{
-            RecyclerView recycler2=(RecyclerView)findViewById(R.id.recyclerView2);
-            Recyclerview_Adapter2 adapter2=new Recyclerview_Adapter2(this,prodimg,prodname,prodprice,prodlink);
-            recycler2.setAdapter(adapter2) ;
-            recycler2.setLayoutManager(new LinearLayoutManager(this));
-        }catch(Exception e)
-        {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
     }
     public void getFlipkart(final String  s)
     {
@@ -177,59 +195,46 @@ StringBuilder prod=new StringBuilder();
                     Element element=doc.getElementsByClass("_2cLu-l").first();
                     prodname.add(element.attr("title"));
                     prodlink.add(element.attr("href"));
+                    prodsite.add(1);
                     //element=doc.getElementsByClass("img._1Nyybr._30XEf0").first();
                     //imglink.append(element.attr("alt"));
-                    prodimg.add("file:///C:/Users/i5/Downloads/download.png");
+                    //prodimg.add("file:///C:/Users/i5/Downloads/download.png");
                     element=doc.getElementsByClass("_1vC4OE").first();
                     prodprice.add(element.text());
-                    //builder.append("\nFlip Title : "+name+"\nLink : "+link+"\nImg : "+imglink+"\nPrice: "+price);
-                }catch (IOException e)
+                }catch (Exception e)
                 {
-                    builder.append("Error : ").append(e.getMessage()).append("\n");
+                    flag=1;
+                   // builder.append("Error : ").append(e.getMessage()).append("\n");
+                    loadfragment(new ErrorFragment());
                 }
                 runOnUiThread(new Runnable(){
                     @Override
                             public void run() {
-                        //initRecyclerView2();
-                        pb=(ProgressBar)findViewById(R.id.progressBar2);
-                        pb.setVisibility(View.INVISIBLE);
-
+                            if(flag==0) {
+                                initRecyclerView2();
+                                pb = (ProgressBar) findViewById(R.id.progressBar2);
+                                pb.setVisibility(View.INVISIBLE);
+                            }
                     }
                 });
 
             }
         }).start();
     }
-
-    public void fb(View view)
+    /*Functions that generate Recycler  view */
+    private void initRecyclerView2()
     {
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/techtopus"));
-            startActivity(intent);
-        } catch(Exception e) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/techtopus")));
+
+
+        try{
+            RecyclerView recycler2=(RecyclerView)findViewById(R.id.recyclerView2);
+            Recyclerview_Adapter2 adapter2=new Recyclerview_Adapter2(this,prodimg,prodname,prodprice,prodlink,prodsite);
+            recycler2.setAdapter(adapter2) ;
+            recycler2.setLayoutManager(new LinearLayoutManager(this));
+        }catch(Exception e)
+        {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }
-    public void wish(View view)
-    {
-loadfragment(new WishlistFragment());
-    }
-    public void contact(View view)
-    {
-        final Dialog mydialogue = new Dialog(this);
-
-        //startActivity(intent);
-        mydialogue.setContentView(R.layout.popup_contact);
-        TextView t=(TextView)mydialogue.findViewById(R.id.closer);
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mydialogue.dismiss();
-
-
-            }
-        });
-        mydialogue.show();
     }
 
     @Override

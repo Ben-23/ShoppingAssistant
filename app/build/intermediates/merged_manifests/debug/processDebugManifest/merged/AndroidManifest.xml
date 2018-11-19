@@ -45,8 +45,11 @@
         </activity>
         <activity
             android:name="com.techtopus.shoppingassistant.menu"
-            android:label="@string/title_activity_menu" />
-        <activity android:name="com.techtopus.shoppingassistant.ScanActivity" />
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.techtopus.shoppingassistant.ScanActivity"
+            android:screenOrientation="portrait" />
 
         <receiver android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver" />
 

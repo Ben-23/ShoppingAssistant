@@ -69,7 +69,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     public void onBackPressed(){
         Intent i=new Intent(ScanActivity.this,menu.class);
-        i.putExtra("result","8904256002820");
+        i.putExtra("result","8901277007087");
         startActivity(i);
     }
     @Override

@@ -1214,6 +1214,7 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable add
+drawable amazon
 drawable avd_hide_password
 drawable avd_show_password
 drawable bg
@@ -1302,6 +1303,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable error404
 drawable fb
+drawable flipkart
 drawable gmail_icon
 drawable google
 drawable googleg_disabled_color_18
@@ -1851,6 +1853,7 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id site
 id slide
 id smallLabel
 id snackbar_action

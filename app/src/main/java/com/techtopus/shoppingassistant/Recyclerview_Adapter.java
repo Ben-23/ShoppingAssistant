@@ -46,8 +46,8 @@ public class Recyclerview_Adapter extends RecyclerView.Adapter<Recyclerview_Adap
         public void onClick(View view) {
             Toast.makeText(context, items.get(i)+" is cleared", Toast.LENGTH_SHORT).show();
             viewHolder.txt.setText("");
-
             items.remove(items.get(i));
+            notifyDataSetChanged();
 
 
 
