@@ -153,7 +153,11 @@ private ArrayList <String> items=new ArrayList<>();
             @Override
             public void run() {
                 Document doc = null;
-
+                prodname.clear();
+                prodlink.clear();
+                prodimg.clear();
+                prodprice.clear();
+                prodsite.clear();
                 try {
                     doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).get();
                     Element element=doc.select("a.a-link-normal.s-access-detail-page").first();
@@ -173,7 +177,7 @@ private ArrayList <String> items=new ArrayList<>();
                     @Override
                     public void run() {
                         if(flag==0) {
-                            
+
                             initRecyclerView2();
                             pb = (ProgressBar) findViewById(R.id.progressBar2);
                             pb.setVisibility(View.INVISIBLE);
@@ -190,6 +194,14 @@ private ArrayList <String> items=new ArrayList<>();
             @Override
             public void run() {
                 Document doc =null;
+                if(prodname.size()>1)
+                {
+                    prodname.clear();
+                    prodlink.clear();
+                    prodimg.clear();
+                    prodprice.clear();
+                    prodsite.clear();
+                }
                 try{
                     doc =  Jsoup.connect("https://www.flipkart.com/search?q=" + s).get();
                     Element element=doc.getElementsByClass("_2cLu-l").first();
@@ -198,13 +210,12 @@ private ArrayList <String> items=new ArrayList<>();
                     prodsite.add(1);
                     //element=doc.getElementsByClass("img._1Nyybr._30XEf0").first();
                     //imglink.append(element.attr("alt"));
-                    //prodimg.add("file:///C:/Users/i5/Downloads/download.png");
+                    prodimg.add(prodimg.get(0));
                     element=doc.getElementsByClass("_1vC4OE").first();
                     prodprice.add(element.text());
                 }catch (Exception e)
                 {
                     flag=1;
-                   // builder.append("Error : ").append(e.getMessage()).append("\n");
                     loadfragment(new ErrorFragment());
                 }
                 runOnUiThread(new Runnable(){

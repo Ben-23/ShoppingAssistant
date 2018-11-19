@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.techtopus.shoppingassistant.Recyclerview_Adapter.ViewHolder;
 
@@ -50,13 +49,15 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
 
     @Override
     public void onBindViewHolder(@NonNull final viewholder viewHolder2, final int i) {
-     viewHolder2.t1.setText(prodname.get(i));
+
+        viewHolder2.t1.setText(prodname.get(i));
         viewHolder2.t2.setText(prodprice.get(i));
         if(prodsite.get(i)==0)
             viewHolder2.site.setImageResource(R.drawable.amazon);
         else
             viewHolder2.site.setImageResource(R.drawable.flipkart);
-            Glide.with(context).asBitmap().load(prodlink.get(i)).into(viewHolder2.prodimg);
+            Uri uri=Uri.parse(prodimg.get(i));
+            Glide.with(context).load(uri).into(viewHolder2.prodimag);
             viewHolder2.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,13 +75,13 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
     }
 
     public class viewholder extends ViewHolder {
-        ImageView prodimg,site;
+        ImageView prodimag,site;
         TextView t1, t2;
         RelativeLayout rl;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
-            prodimg = (ImageView) itemView.findViewById(R.id.prodimg);
+            prodimag = (ImageView) itemView.findViewById(R.id.prodimg);
             t1 = (TextView) itemView.findViewById(R.id.prod_name);
             t2 = (TextView) itemView.findViewById(R.id.prod_price);
             rl = (RelativeLayout) itemView.findViewById(R.id.pro_layout);
