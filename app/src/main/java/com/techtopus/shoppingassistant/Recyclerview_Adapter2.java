@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.techtopus.shoppingassistant.Recyclerview_Adapter.ViewHolder;
 
 import java.util.ArrayList;
@@ -49,14 +50,19 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
 
     @Override
     public void onBindViewHolder(@NonNull final viewholder viewHolder2, final int i) {
-
+        RequestOptions requestOptions=new RequestOptions();
         viewHolder2.t1.setText(prodname.get(i));
         viewHolder2.t2.setText(prodprice.get(i));
-        if(prodsite.get(i)==0)
+
+        if(prodsite.get(i)==0) {
             viewHolder2.site.setImageResource(R.drawable.amazon);
-        else
+            requestOptions= RequestOptions.placeholderOf(R.drawable.amazon);
+        }
+        else{
             viewHolder2.site.setImageResource(R.drawable.flipkart);
-            Glide.with(context).load(prodimg.get(i)).into(viewHolder2.prodimag);
+            requestOptions= RequestOptions.placeholderOf(R.drawable.flipkart);
+            }
+            Glide.with(context).load(prodimg.get(i)).apply(requestOptions).into(viewHolder2.prodimag);
             viewHolder2.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

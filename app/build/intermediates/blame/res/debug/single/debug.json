@@ -276,12 +276,12 @@
         "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.0.1.aar\\4e0b24ec09cb07e51b1655cc0320bf0d\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
-        "merged": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flipkart.png.flat",
-        "source": "E:\\WorkSpace\\ShoppingAssistant\\app\\src\\main\\res\\drawable\\flipkart.png"
-    },
-    {
         "merged": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_notification_rewind.xml.flat",
         "source": "C:\\Users\\i5\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.0.1.aar\\97ab054ac78ef11a03fe55ff5f897a78\\res\\drawable\\cast_ic_notification_rewind.xml"
+    },
+    {
+        "merged": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flipkart.png.flat",
+        "source": "E:\\WorkSpace\\ShoppingAssistant\\app\\src\\main\\res\\drawable\\flipkart.png"
     },
     {
         "merged": "E:\\WorkSpace\\ShoppingAssistant\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",

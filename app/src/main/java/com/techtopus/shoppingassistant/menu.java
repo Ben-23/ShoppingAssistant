@@ -276,7 +276,7 @@ private ArrayList <String> items=new ArrayList<>();
         }
         Fragment fragobj= new ResultFragment();
         loadfragment(fragobj);
-        Toast.makeText(this,prod.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,prod.toString(), Toast.LENGTH_SHORT).show();
         getAmazon(prod.toString());
         getFlipkart(prod.toString());
     }

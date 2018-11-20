@@ -23,7 +23,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
     private ZXingScannerView mScannerView;
-
+    static int flag=0;
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -38,17 +38,18 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         //startActivity(intent);
         mydialogue.setContentView(R.layout.popupcamera);
         TextView t=(TextView)mydialogue.findViewById(R.id.cl);
-        mydialogue.show();
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mydialogue.dismiss();
+        if(flag==0) {
+            mydialogue.show();
+            t.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mydialogue.dismiss();
 
 
-            }
-        });
-
-
+                }
+            });
+            flag++;
+        }
 
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
@@ -69,7 +70,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     public void onBackPressed(){
         Intent i=new Intent(ScanActivity.this,menu.class);
-        i.putExtra("result","8904256002820");
+        //i.putExtra("result","8901277007087");
         startActivity(i);
     }
     @Override
