@@ -19,7 +19,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="7dp" />
+        tools:layout_editor_absoluteY="7dp"
+        android:visibility="invisible"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView2"

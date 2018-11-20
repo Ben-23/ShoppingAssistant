@@ -1666,7 +1666,6 @@ id direct
 id disableHome
 id donate_with
 id donate_with_google
-id editText
 id editText2
 id editText3
 id edit_query
@@ -1710,7 +1709,6 @@ id image
 id imageView
 id imageView10
 id imageView12
-id imageView2
 id imageView3
 id imageView4
 id imageView5
@@ -1897,6 +1895,7 @@ id textView12
 id textView13
 id textView14
 id textView15
+id textView16
 id textView2
 id textView3
 id textView4

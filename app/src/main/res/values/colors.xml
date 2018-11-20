@@ -6,4 +6,5 @@
     <color name="colorAccent">#000000</color>
     <color name="popup">#616269</color>
     <color name="close">#111</color>
+    <color name="background_material_light">#ffffff</color>
 </resources>

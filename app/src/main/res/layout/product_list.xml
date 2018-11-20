@@ -35,6 +35,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="82dp"
         android:layout_marginLeft="300dp"/>
+
     <TextView
         android:id="@+id/prod_price"
         android:layout_width="wrap_content"

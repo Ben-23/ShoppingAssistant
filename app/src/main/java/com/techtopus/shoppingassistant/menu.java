@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -71,7 +72,8 @@ private ArrayList <String> items=new ArrayList<>();
             {
                 loadfragment(new ResultFragment());
                 getAmazon(bundle.getString("result"));
-                getFlipkart(bundle.getString("result"));
+                 getFlipkart(bundle.getString("result"));
+
             }
 
 
@@ -122,8 +124,6 @@ private ArrayList <String> items=new ArrayList<>();
     public void contact(View view)
     {
         final Dialog mydialogue = new Dialog(this);
-
-        //startActivity(intent);
         mydialogue.setContentView(R.layout.popup_contact);
         TextView t=(TextView)mydialogue.findViewById(R.id.closer);
         t.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +148,7 @@ private ArrayList <String> items=new ArrayList<>();
     /*Fucntions to fetch data from amazon and flipkart*/
     public void getAmazon(final String s)
     {
-
+        final StringBuilder cur=new StringBuilder("₹");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -159,29 +159,32 @@ private ArrayList <String> items=new ArrayList<>();
                 prodprice.clear();
                 prodsite.clear();
                 try {
-                    doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).get();
+                    doc =  Jsoup.connect("https://www.amazon.in/s/keywords=" + s).userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36").get();
                     Element element=doc.select("a.a-link-normal.s-access-detail-page").first();
                     prodname.add(element.text());
                     prodlink.add(element.attr("href"));
                     element=doc.getElementsByClass("s-access-image").first();
                     prodimg.add(element.attr("src"));
-                    prodimg.add(element.attr("src"));
                     prodsite.add(0);
                     element=doc.select("span.a-size-base.a-color-price.s-price.a-text-bold").first();
-                    prodprice.add(element.text());
+                    cur.append(element.text());
+                    prodprice.add(cur.toString());
                 }catch (Exception e) {
-                    flag=1;
-                    loadfragment(new ErrorFragment());
+                    prodname.add("Sorry, This product is not available  on Amazon ");
+                    prodimg.add(null);
+                    prodsite.add(0);
+                    prodlink.add("https://amazon.in/");
+                    prodprice.add("________");
+                    //loadfragment(new ErrorFragment());
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(flag==0) {
 
                             initRecyclerView2();
                             pb = (ProgressBar) findViewById(R.id.progressBar2);
                             pb.setVisibility(View.INVISIBLE);
-                        }
+
 
                      }
                 });
@@ -191,41 +194,36 @@ private ArrayList <String> items=new ArrayList<>();
     public void getFlipkart(final String  s)
     {
         new Thread(new Runnable() {
+            StringBuilder link=new StringBuilder("https://www.flipkart.com");
             @Override
             public void run() {
                 Document doc =null;
-                if(prodname.size()>1)
-                {
-                    prodname.clear();
-                    prodlink.clear();
-                    prodimg.clear();
-                    prodprice.clear();
-                    prodsite.clear();
-                }
                 try{
                     doc =  Jsoup.connect("https://www.flipkart.com/search?q=" + s).get();
                     Element element=doc.getElementsByClass("_2cLu-l").first();
-                    prodname.add(element.attr("title"));
-                    prodlink.add(element.attr("href"));
+                    prodname.add(element.text());
+                    link.append(element.attr("href"));
+                    prodlink.add(link.toString());
                     prodsite.add(1);
-                    //element=doc.getElementsByClass("img._1Nyybr._30XEf0").first();
-                    //imglink.append(element.attr("alt"));
-                    prodimg.add(prodimg.get(0));
+                    prodimg.add(null);
                     element=doc.getElementsByClass("_1vC4OE").first();
                     prodprice.add(element.text());
                 }catch (Exception e)
                 {
-                    flag=1;
-                    loadfragment(new ErrorFragment());
+                    prodname.add("Sorry, This product is not available  on Flipkart ");
+                    prodimg.add(null);
+                    prodsite.add(1);
+                    prodlink.add("https://www.flipkart.com/");
+                    prodprice.add("________");
                 }
                 runOnUiThread(new Runnable(){
                     @Override
                             public void run() {
-                            if(flag==0) {
+
                                 initRecyclerView2();
-                                pb = (ProgressBar) findViewById(R.id.progressBar2);
+                                pb = findViewById(R.id.progressBar2);
                                 pb.setVisibility(View.INVISIBLE);
-                            }
+
                     }
                 });
 
@@ -233,6 +231,17 @@ private ArrayList <String> items=new ArrayList<>();
         }).start();
     }
     /*Functions that generate Recycler  view */
+    private void initRecyclerView()
+    {
+        try{
+            RecyclerView recycler=(RecyclerView)findViewById(R.id.recycle);
+            Recyclerview_Adapter adapter=new Recyclerview_Adapter(this,items);
+            recycler.setAdapter(adapter) ;
+            recycler.setLayoutManager(new LinearLayoutManager(this));
+        }catch(Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
     private void initRecyclerView2()
     {
 
@@ -271,22 +280,6 @@ private ArrayList <String> items=new ArrayList<>();
         getAmazon(prod.toString());
         getFlipkart(prod.toString());
     }
-    public void searchproduct_err(View view)
-    {
-        t=(EditText)findViewById(R.id.editText2);
-        prod.append(t2.getText());
-        for (int index = 0; index < prod.length(); index++) {
-            if (prod.charAt(index) == ' ') {
-                prod.deleteCharAt(index);
-            }
-        }
-        Fragment fragobj= new ResultFragment();
-        loadfragment(fragobj);
-        getAmazon(prod.toString());
-        Toast.makeText(this, prod, Toast.LENGTH_SHORT).show();
-
-    }
-
     public void add(View view)
     {
 
@@ -297,21 +290,5 @@ private ArrayList <String> items=new ArrayList<>();
         initRecyclerView();
         h.delete(0,h.length());
     }
-    private void initRecyclerView()
-    {
-//        if(fullList != null && temp != null) {
-//            adapter = new ExpandableListCustom(getActivity(), fullList,temp);
-//            lv.setAdapter(adapter);
-//        }
 
-try{
-        RecyclerView recycler=(RecyclerView)findViewById(R.id.recycle);
-        Recyclerview_Adapter adapter=new Recyclerview_Adapter(this,items);
-        recycler.setAdapter(adapter) ;
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-    }catch(Exception e)
-{
-    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-}
-    }
 }

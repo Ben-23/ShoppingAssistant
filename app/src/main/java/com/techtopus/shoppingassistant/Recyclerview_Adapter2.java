@@ -56,8 +56,7 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
             viewHolder2.site.setImageResource(R.drawable.amazon);
         else
             viewHolder2.site.setImageResource(R.drawable.flipkart);
-            Uri uri=Uri.parse(prodimg.get(i));
-            Glide.with(context).load(uri).into(viewHolder2.prodimag);
+            Glide.with(context).load(prodimg.get(i)).into(viewHolder2.prodimag);
             viewHolder2.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
