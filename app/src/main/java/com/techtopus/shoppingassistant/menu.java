@@ -32,20 +32,16 @@ import java.util.ArrayList;
 
 
 public class menu extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
-private ArrayList <String> items=new ArrayList<>();
 
+    private ArrayList <String> items=new ArrayList<>();
     private ArrayList <String> prodname=new ArrayList<>();
     private ArrayList <String> prodimg=new ArrayList<>();
     private ArrayList <String> prodlink=new ArrayList<>();
     private ArrayList <String> prodprice=new ArrayList<>();
     private ArrayList <Integer> prodsite=new ArrayList<>();
-    int flag=0;
-    public EditText t,t2,t3;
-    int g;
-    TextView txtt;
+    public EditText t,t2;
     ProgressBar pb;
     StringBuilder h=new StringBuilder();
-    StringBuilder builder=new StringBuilder();
     StringBuilder prod=new StringBuilder();
 
     @Override
@@ -55,8 +51,9 @@ private ArrayList <String> items=new ArrayList<>();
 
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setSelectedItemId(R.id.home);
         navigation.setOnNavigationItemSelectedListener(this);
-        Bundle bundle=getIntent().getExtras();
+        final Bundle bundle=getIntent().getExtras();
         if(bundle==null)
             loadfragment(new HomeFragment());
 
@@ -72,7 +69,14 @@ private ArrayList <String> items=new ArrayList<>();
             {
                 loadfragment(new ResultFragment());
                 getAmazon(bundle.getString("result"));
-                 getFlipkart(bundle.getString("result"));
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        getFlipkart(bundle.getString("result"));
+                    }
+                },1700);
+
 
             }
 
@@ -92,6 +96,7 @@ private ArrayList <String> items=new ArrayList<>();
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
+
         switch (menuItem.getItemId()) {
             case R.id.home:
                 fragment = new HomeFragment();
@@ -175,6 +180,7 @@ private ArrayList <String> items=new ArrayList<>();
                     prodsite.add(0);
                     prodlink.add("https://amazon.in/");
                     prodprice.add("________");
+                    //Toast.makeText(menu.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     //loadfragment(new ErrorFragment());
                 }
                 runOnUiThread(new Runnable() {
@@ -205,11 +211,13 @@ private ArrayList <String> items=new ArrayList<>();
                     link.append(element.attr("href"));
                     prodlink.add(link.toString());
                     prodsite.add(1);
-                    prodimg.add(null);
+                    try{
+                    prodimg.add(prodimg.get(0));}catch (Exception e){prodimg.add(null);}
                     element=doc.getElementsByClass("_1vC4OE").first();
                     prodprice.add(element.text());
                 }catch (Exception e)
                 {
+                    //Toast.makeText(menu.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     prodname.add("Sorry, This product is not available  on Flipkart ");
                     prodimg.add(null);
                     prodsite.add(1);
@@ -278,7 +286,13 @@ private ArrayList <String> items=new ArrayList<>();
         loadfragment(fragobj);
         //Toast.makeText(this,prod.toString(), Toast.LENGTH_SHORT).show();
         getAmazon(prod.toString());
-        getFlipkart(prod.toString());
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                getFlipkart(prod.toString());
+            }
+        },1700);
     }
     public void add(View view)
     {

@@ -52,7 +52,7 @@ public class Recyclerview_Adapter2 extends RecyclerView.Adapter<Recyclerview_Ada
     public void onBindViewHolder(@NonNull final viewholder viewHolder2, final int i) {
         RequestOptions requestOptions=new RequestOptions();
         viewHolder2.t1.setText(prodname.get(i));
-        viewHolder2.t2.setText(prodprice.get(i));
+        try{viewHolder2.t2.setText(prodprice.get(i));}catch (Exception e){viewHolder2.t1.setText(""); viewHolder2.t2.setText("No Fixed Price");}
 
         if(prodsite.get(i)==0) {
             viewHolder2.site.setImageResource(R.drawable.amazon);

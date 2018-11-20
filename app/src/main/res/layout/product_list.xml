@@ -22,7 +22,9 @@
         android:layout_height="wrap_content"
 
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="26dp"
         android:layout_marginEnd="18dp"
+        android:layout_toEndOf="@+id/prodimg"
         android:fontFamily="cursive"
         android:text="Product Name"
         android:textColor="#000"
@@ -33,16 +35,20 @@
         android:id="@+id/site"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="82dp"
-        android:layout_marginLeft="300dp"/>
+        android:layout_alignBottom="@+id/prodimg"
+        android:layout_marginStart="114dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginBottom="-23dp"
+        android:layout_toEndOf="@+id/prod_price" />
 
     <TextView
         android:id="@+id/prod_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/prod_name"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="54dp"
+        android:layout_toEndOf="@+id/prodimg"
         android:fontFamily="cursive"
         android:text="₹."
         android:textColor="#000"

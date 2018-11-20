@@ -1638,7 +1638,6 @@ id closebtn
 id closer
 id collapseActionView
 id constraintLayout
-id constraintLayout2
 id contact
 id container
 id container_all
@@ -1896,6 +1895,7 @@ id textView13
 id textView14
 id textView15
 id textView16
+id textView17
 id textView2
 id textView3
 id textView4
@@ -1994,7 +1994,6 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_menu
-layout activity_result_
 layout activity_scan
 layout cast_expanded_controller_activity
 layout cast_help_text
